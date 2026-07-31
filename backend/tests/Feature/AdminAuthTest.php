@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class AdminAuthTest extends TestCase
@@ -27,8 +28,15 @@ class AdminAuthTest extends TestCase
 
     public function test_authenticated_user_can_access_dashboard(): void
     {
+        Http::fake([
+            '*/api/events*' => Http::response([
+                'status' => 'success',
+                'data' => []
+            ], 200)
+        ]);
+
         $user = User::factory()->create([
-            'email' => 'admin@maxy.academy'
+            'email' => 'hudsam@maxy.academy'
         ]);
         
         $response = $this->actingAs($user)->get('/admin/dashboard');
