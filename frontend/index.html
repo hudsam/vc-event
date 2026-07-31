@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Event Publik - Maxy Academy</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 700;
+        }
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: #0d6efd;
+            display: block;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        .event-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        .speaker-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .sponsor-logo {
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+            max-height: 80px;
+        }
+        .sponsor-logo:hover {
+            filter: grayscale(0%);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#">MaxyEvent</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-toggle="target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#events">Event</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#schedule">Jadwal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#speakers">Pembicara</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="btn btn-primary ms-3" href="#contact">Hubungi Kami</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">Temukan Event Terbaik Untuk Anda</h1>
+            <p class="lead mb-5">Tingkatkan skill dan perluas networking Anda dengan mengikuti berbagai konferensi, workshop, dan seminar dari Maxy Academy.</p>
+            <a href="#events" class="btn btn-light btn-lg text-primary fw-bold px-5 py-3 rounded-pill">Lihat Daftar Event</a>
+        </div>
+    </section>
+
+    <!-- Events Section (Dynamic) -->
+    <section id="events" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Event Unggulan</h2>
+            
+            <div id="loading" class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2 text-muted">Memuat data dari API...</p>
+            </div>
+            
+            <div class="row" id="event-list">
+                <!-- Events populated via jQuery -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section (Static) -->
+    <section id="schedule" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Jadwal Umum</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold fs-5">Registrasi Ulang</div>
+                                Peserta melakukan check-in dan pengambilan seminar kit.
+                            </div>
+                            <span class="badge bg-primary rounded-pill py-2 px-3">08:00 - 09:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold fs-5">Keynote Session</div>
+                                Pembukaan oleh CEO dan pemaparan materi utama.
+                            </div>
+                            <span class="badge bg-primary rounded-pill py-2 px-3">09:00 - 11:30</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold fs-5">Istirahat & Networking</div>
+                                ISHOMA dan kesempatan networking antar peserta.
+                            </div>
+                            <span class="badge bg-primary rounded-pill py-2 px-3">11:30 - 13:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold fs-5">Workshop Interaktif</div>
+                                Sesi praktik bersama mentor eksklusif.
+                            </div>
+                            <span class="badge bg-primary rounded-pill py-2 px-3">13:00 - 16:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaker Section (Static) -->
+    <section id="speakers" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Pembicara Profesional</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm pt-4">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" class="speaker-img" alt="Speaker 1">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Andi Pratama</h5>
+                            <p class="text-primary mb-3">CEO Maxy Tech</p>
+                            <p class="card-text text-muted">Berpengalaman lebih dari 15 tahun di industri startup teknologi dan AI.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm pt-4">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" class="speaker-img" alt="Speaker 2">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Siti Aisyah</h5>
+                            <p class="text-primary mb-3">Head of Data Science</p>
+                            <p class="card-text text-muted">Mantan peneliti di Silicon Valley yang kini membangun ekosistem data di Indonesia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm pt-4">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" class="speaker-img" alt="Speaker 3">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Budi Santoso</h5>
+                            <p class="text-primary mb-3">Digital Marketing Expert</p>
+                            <p class="card-text text-muted">Membantu ribuan UMKM untuk go digital dengan strategi Growth Hacking.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsor Section (Static) -->
+    <section id="sponsors" class="py-5">
+        <div class="container text-center">
+            <h2 class="section-title">Disponsori Oleh</h2>
+            <div class="row align-items-center justify-content-center mt-5 gap-5">
+                <div class="col-auto">
+                    <h3 class="text-muted fw-bold sponsor-logo">TECH CORP</h3>
+                </div>
+                <div class="col-auto">
+                    <h3 class="text-muted fw-bold sponsor-logo">INNOVA.IO</h3>
+                </div>
+                <div class="col-auto">
+                    <h3 class="text-muted fw-bold sponsor-logo">MEDIA GROUP</h3>
+                </div>
+                <div class="col-auto">
+                    <h3 class="text-muted fw-bold sponsor-logo">STARTUP HUB</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Static) -->
+    <section id="faq" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="accordion" id="accordionFAQ">
+                        <div class="accordion-item border-0 mb-3 shadow-sm rounded">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-toggle="target="#collapseOne">
+                                    Bagaimana cara mendaftar event?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body text-muted">
+                                    Pilih event yang Anda minati di bagian "Event Unggulan", klik "Detail Event", lalu tekan tombol Registrasi. Ikuti petunjuk selanjutnya.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 mb-3 shadow-sm rounded">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-toggle="target="#collapseTwo">
+                                    Apakah saya akan mendapatkan sertifikat?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body text-muted">
+                                    Ya, semua peserta yang mengikuti event sampai selesai akan mendapatkan e-certificate yang dikirimkan melalui email 3 hari setelah event berakhir.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="mb-4">Maxy Academy</h4>
+                    <p class="text-secondary">Platform event profesional untuk pengembangan karir dan skill digital masa depan.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="mb-4">Hubungi Kami</h4>
+                    <ul class="list-unstyled text-secondary">
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i> Jl. Sudirman No. 123, Jakarta</li>
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i> info@maxy.academy</li>
+                        <li class="mb-2"><i class="bi bi-whatsapp me-2"></i> +62 812-3456-7890</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4 class="mb-4">Peta Lokasi</h4>
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-center" style="height: 150px;">
+                        [Google Maps Embed Dummy]
+                    </div>
+                </div>
+            </div>
+            <div class="border-top border-secondary pt-4 mt-4 text-center text-secondary">
+                <p class="mb-0">&copy; 2026 Maxy Academy. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery & Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- App JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
