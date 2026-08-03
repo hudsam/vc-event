@@ -17,9 +17,20 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (!User::where('email', 'huda@maxy.academy')->exists()) {
+            User::create([
+                'name' => 'huda',
+                'email' => 'huda@maxy.academy',
+                'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            ]);
+        }
+
+        if (!User::where('email', 'smith@maxy.academy')->exists()) {
+            User::create([
+                'name' => 'smith',
+                'email' => 'smith@maxy.academy',
+                'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            ]);
+        }
     }
 }
