@@ -9,17 +9,14 @@ class Config:
     DEBUG = os.environ.get('APP_DEBUG', 'true').lower() == 'true'
     
     # DB configuration
-    DB_CONN = os.environ.get('DB_CONNECTION', 'mysql')
-    DB_HOST = os.environ.get('DB_HOST', 'localhost')
-    DB_PORT = os.environ.get('DB_PORT', '3306')
-    DB_DATABASE = os.environ.get('DB_DATABASE', 'database')
-    DB_USERNAME = os.environ.get('DB_USERNAME', 'username')
-    DB_PASSWORD = os.environ.get('DB_PASSWORD', 'password')
+    DB_CONN = os.environ.get('DB_CONNECTION')
+    DB_HOST = os.environ.get('DB_HOST')
+    DB_PORT = os.environ.get('DB_PORT')
+    DB_DATABASE = os.environ.get('DB_DATABASE')
+    DB_USERNAME = os.environ.get('DB_USERNAME')
+    DB_PASSWORD = os.environ.get('DB_PASSWORD')
 
-    if DB_CONN == 'sqlite':
-        SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(os.path.abspath(os.path.dirname(__file__)), DB_DATABASE + '.sqlite')}"
-    else:
-        # mysql using pymysql driver
+    if DB_CONN == 'mysql':
         SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
-        
+    
     SQLALCHEMY_TRACK_MODIFICATIONS = False
