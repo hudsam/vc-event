@@ -6,6 +6,8 @@
 .phpactor.json
 .phpunit.result.cache
 composer.lock
+package-lock.json
+dist/
 /.codex
 /.cursor/
 /.idea
