@@ -4,8 +4,9 @@ from models import db
 from config import Config
 from routes import auth_bp, event_bp
 
+app = Flask(__name__)
+
 def create_app(config_class=Config):
-    app = Flask(__name__)
     app.config.from_object(config_class)
     
     # Configure CORS
