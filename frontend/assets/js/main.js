@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const API_URL = 'YOUR_API_URL/api';
+    const API_URL = 'http://localhost:8000/api';
 
     // Fetch Events on load
     fetchEvents();
@@ -39,7 +39,7 @@ $(document).ready(function () {
             const card = `
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 event-card shadow-sm">
-                        <img src="${event.banner_url ? event.banner_url : 'https://placehold.co/600x400?text=Event+Poster'}" class="card-img-top" alt="${event.title}">
+                        <img src="${event.banner ? event.banner : 'https://placehold.co/600x400?text=Event+Poster'}" class="card-img-top" alt="${event.title}">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">${event.title}</h5>
                             <p class="card-text text-muted mb-2"><small><i class="bi bi-calendar"></i> ${date}</small></p>
