@@ -2,10 +2,10 @@
 
 Technology Stack
 
-- Bootstrap 5
-- Laravel
-- Lumen
-- MariaDB
+- **Frontend**: Plain HTML5 & Bootstrap 5 (located in branch : frontend)
+- **Backend**: React + Vite + Tailwind CSS v4 (located in branch : backend-vt)
+- **REST API**: Python Flask + Flask-SQLAlchemy (located in branch : api-py)
+- **Database**: MySQL / MariaDB
 
 ---
 
